@@ -349,7 +349,10 @@ public class ImagePickerModule extends ReactContextBaseJavaModule
 
     try
     {
-      currentActivity.startActivityForResult(libraryIntent, requestCode);
+      // Allows the user to pick from either the default photo album or an available external
+      // document store (ex. Google Drive).
+      Intent libraryChooserIntent = Intent.createChooser(libraryIntent, null);
+      currentActivity.startActivityForResult(libraryChooserIntent, requestCode);
     }
     catch (ActivityNotFoundException e)
     {
